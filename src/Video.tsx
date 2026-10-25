@@ -1,6 +1,19 @@
 import React from 'react';
-import { AbsoluteFill, Sequence, useCurrentFrame, interpolate, spring, useVideoConfig } from 'remotion';
-import scenesData from './scenes.json';
+import { AbsoluteFill, Sequence, useCurrentFrame, interpolate, useVideoConfig } from 'remotion';
+
+// Встроенные данные сцен (бывший scenes.json)
+const SCENES = [
+  {"title":"ЗАРОЖДЕНИЕ ИИ", "subtitle":"Всё начинается с искры, данных и энергии.", "effect":"orbits", "typing":false, "accent":"#00edff"},
+  {"title":"Что, если машина\nнаучится думать?", "subtitle":"Искусственный интеллект меняет способ создавать, анализировать и решать.", "effect":"neurons", "typing":true, "accent":"#e946fa"},
+  {"title":"ДАННЫЕ", "subtitle":"Тексты, изображения и сигналы становятся топливом модели.", "effect":"data", "typing":false, "accent":"#00edff"},
+  {"title":"ОБУЧЕНИЕ", "subtitle":"Алгоритмы находят связи и закономерности.", "effect":"training", "typing":false, "accent":"#bb52ff"},
+  {"title":"ПОНИМАНИЕ", "subtitle":"Нейросеть формирует прогнозы и выводы.", "effect":"neurons", "typing":true, "accent":"#28dbff"},
+  {"title":"ИИ В ДЕЙСТВИИ", "subtitle":"Из данных — в понятные решения.", "effect":"dashboard", "typing":true, "accent":"#00edff"},
+  {"title":"РОСТ", "subtitle":"ИИ помогает ускорять процессы и находить возможности.", "effect":"growth", "typing":false, "accent":"#e946fa"},
+  {"title":"МАСШТАБ", "subtitle":"Люди, сервисы и системы соединяются в единую сеть.", "effect":"globe", "typing":false, "accent":"#34deff"},
+  {"title":"ГЕНЕРАЦИЯ", "subtitle":"Новые идеи рождаются из сочетания данных и моделей.", "effect":"vortex", "typing":true, "accent":"#e946fa"},
+  {"title":"БУДУЩЕЕ\nУЖЕ ЗДЕСЬ", "subtitle":"Искусственный интеллект — математика в действии.", "effect":"mandala", "typing":true, "accent":"#00edff"}
+];
 
 const FPS = 30;
 const DURATION_PER_SCENE = 5 * FPS; // 5 секунд на сцену = 150 кадров
@@ -10,11 +23,9 @@ const Scene: React.FC<{ scene: any }> = ({ scene }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   
-  // Анимация появления текста
   const textOpacity = interpolate(frame, [0, 20], [0, 1], { extrapolateRight: 'clamp' });
   const textY = interpolate(frame, [0, 20], [30, 0], { extrapolateRight: 'clamp' });
 
-  // Эффект печатной машинки (если typing: true)
   const charsToShow = scene.typing 
     ? Math.floor(interpolate(frame, [10, 60], [0, scene.title.length], { extrapolateRight: 'clamp' }))
     : scene.title.length;
@@ -24,7 +35,7 @@ const Scene: React.FC<{ scene: any }> = ({ scene }) => {
   return (
     <AbsoluteFill style={{ backgroundColor: '#050510', justifyContent: 'center', alignItems: 'center', overflow: 'hidden' }}>
       
-      {/* ФОНОВЫЕ ЭФФЕКТЫ (в зависимости от поля "effect") */}
+      {/* Эффекты */}
       {scene.effect === 'orbits' && (
         <AbsoluteFill style={{ justifyContent: 'center', alignItems: 'center' }}>
            {[1, 2, 3].map(i => (
@@ -69,12 +80,11 @@ const Scene: React.FC<{ scene: any }> = ({ scene }) => {
         </AbsoluteFill>
       )}
 
-      {/* Дефолтный фон для остальных эффектов (dashboard, globe, etc.) */}
       {!['orbits', 'neurons', 'data', 'vortex'].includes(scene.effect) && (
          <AbsoluteFill style={{ background: `radial-gradient(circle at center, ${scene.accent}20 0%, transparent 70%)` }} />
       )}
 
-      {/* ТЕКСТ */}
+      {/* Текст */}
       <div style={{ zIndex: 10, textAlign: 'center', maxWidth: 800 }}>
         <h1 style={{ 
           color: '#fff', fontSize: 70, fontFamily: 'sans-serif', fontWeight: 900, margin: 0, 
@@ -91,18 +101,18 @@ const Scene: React.FC<{ scene: any }> = ({ scene }) => {
         )}
       </div>
 
-      {/* Нижняя неоновая линия */}
+      {/* Нижняя линия */}
       <div style={{ position: 'absolute', bottom: 100, width: interpolate(frame, [0, 50], [0, 300], { extrapolateRight: 'clamp' }), height: 4, backgroundColor: scene.accent, boxShadow: `0 0 20px ${scene.accent}` }} />
 
     </AbsoluteFill>
   );
 };
 
-// --- ГЛАВНЫЙ КОМПОНЕНТ (РЕНДЕРИТ ВСЕ 10 СЦЕН) ---
+// --- ГЛАВНЫЙ КОМПОНЕНТ ---
 export const MainVideo: React.FC = () => {
   return (
     <AbsoluteFill>
-      {scenesData.map((scene, index) => (
+      {SCENES.map((scene, index) => (
         <Sequence 
           key={index} 
           from={index * DURATION_PER_SCENE} 
