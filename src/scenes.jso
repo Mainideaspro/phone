@@ -1,0 +1,12 @@
+[
+  {"title":"ЗАРОЖДЕНИЕ ИИ", "subtitle":"Всё начинается с искры, данных и энергии.", "effect":"orbits", "typing":false, "accent":"#00edff"},
+  {"title":"Что, если машина\nнаучится думать?", "subtitle":"Искусственный интеллект меняет способ создавать, анализировать и решать.", "effect":"neurons", "typing":true, "accent":"#e946fa"},
+  {"title":"ДАННЫЕ", "subtitle":"Тексты, изображения и сигналы становятся топливом модели.", "effect":"data", "typing":false, "accent":"#00edff"},
+  {"title":"ОБУЧЕНИЕ", "subtitle":"Алгоритмы находят связи и закономерности.", "effect":"training", "typing":false, "accent":"#bb52ff"},
+  {"title":"ПОНИМАНИЕ", "subtitle":"Нейросеть формирует прогнозы и выводы.", "effect":"neurons", "typing":true, "accent":"#28dbff"},
+  {"title":"ИИ В ДЕЙСТВИИ", "subtitle":"Из данных — в понятные решения.", "effect":"dashboard", "typing":true, "accent":"#00edff"},
+  {"title":"РОСТ", "subtitle":"ИИ помогает ускорять процессы и находить возможности.", "effect":"growth", "typing":false, "accent":"#e946fa"},
+  {"title":"МАСШТАБ", "subtitle":"Люди, сервисы и системы соединяются в единую сеть.", "effect":"globe", "typing":false, "accent":"#34deff"},
+  {"title":"ГЕНЕРАЦИЯ", "subtitle":"Новые идеи рождаются из сочетания данных и моделей.", "effect":"vortex", "typing":true, "accent":"#e946fa"},
+  {"title":"БУДУЩЕЕ\nУЖЕ ЗДЕСЬ", "subtitle":"Искусственный интеллект — математика в действии.", "effect":"mandala", "typing":true, "accent":"#00edff"}
+]
